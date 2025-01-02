@@ -2,7 +2,6 @@
 using Blog.Models;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Blog{
 
@@ -75,7 +74,7 @@ class Program{
         }
     }
 
-        public static void DeleteUser(){
+    public static void DeleteUser(){
 
         using (var connection = new SqlConnection(CONNECTION_STRING)){
             
