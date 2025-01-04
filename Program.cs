@@ -16,10 +16,7 @@ class Program{
         connection.Open();
 
         ReadUsers(connection);
-        //ReadUser();
-        //CreateUser();
-        //UpdateUser();
-        //DeleteUser();
+        ReadRoles(connection);
 
         connection.Close();
 
@@ -36,57 +33,13 @@ class Program{
         }
     }
 
-    public static void ReadUser(){
-        using (var connection = new SqlConnection(CONNECTION_STRING)){
-            var users = connection.Get<User>(1);
-            Console.WriteLine(users.Bio);
+    public static void ReadRoles(SqlConnection connection){
+        var repository = new RoleRepository(connection);
+        var roles = repository.Get();
 
-        }
-    }
-
-    public static void CreateUser(){
-
-        var tutu = new User(){
-            Name = "Tutu",
-            Email = "tutu@balta.io",
-            PasswordHash = "HASH",              
-            Bio = "VamoqVamo",
-            Image = "http://",
-            Slug = "tutu-balta"
-
-        };
-        using (var connection = new SqlConnection(CONNECTION_STRING)){
-            var users = connection.Insert<User>(tutu);
-            Console.WriteLine("User created");
-
-        }
-    }
-
-    public static void UpdateUser(){
-
-        var user = new User(){
-            Id = 2,
-            Name = "Tutu Updated",
-            Email = "tutu@balta.io",
-            PasswordHash = "HASH",              
-            Bio = "VamoqVamo",
-            Image = "http://",
-            Slug = "tutu-balta-updated"
-
-        };
-        using (var connection = new SqlConnection(CONNECTION_STRING)){
-            var users = connection.Delete<User>(user);
-            Console.WriteLine("Register updated");
-        }
-    }
-
-    public static void DeleteUser(){
-
-        using (var connection = new SqlConnection(CONNECTION_STRING)){
-            
-            var user = connection.Get<User>(2);
-            var users = connection.Delete<User>(user);
-            Console.WriteLine("Register deleted");
+        foreach (var role in roles)
+        {
+            Console.WriteLine(role.Name);
         }
     }
 }

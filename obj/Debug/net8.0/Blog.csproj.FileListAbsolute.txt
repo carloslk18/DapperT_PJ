@@ -55,3 +55,4 @@ C:\Users\carlo\OneDrive\Área de Trabalho\GG\C#\Balta\Blog\obj\Debug\net8.0\refi
 C:\Users\carlo\OneDrive\Área de Trabalho\GG\C#\Balta\Blog\obj\Debug\net8.0\Blog.pdb
 C:\Users\carlo\OneDrive\Área de Trabalho\GG\C#\Balta\Blog\obj\Debug\net8.0\Blog.genruntimeconfig.cache
 C:\Users\carlo\OneDrive\Área de Trabalho\GG\C#\Balta\Blog\obj\Debug\net8.0\ref\Blog.dll
+C:\Users\carlo\OneDrive\Área de Trabalho\GG\C#\Balta\Blog\obj\Debug\net8.0\Blog.sourcelink.json
