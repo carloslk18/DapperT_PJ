@@ -36,7 +36,5 @@ public class UserRepository{
         _connection.Delete<User>(user);
         }
     }
-
-
 }
 }
