@@ -15,7 +15,7 @@ class Program{
         var connection = new SqlConnection(CONNECTION_STRING);
         connection.Open();
 
-        //ReadUsers(connection);
+        ReadUsers(connection);
         //ReadRoles(connection);
         //ReadTags(connection);
         //CreateUsers(connection);
@@ -40,6 +40,9 @@ class Program{
         foreach (var user in users)
         {
             Console.WriteLine(user.Name);
+            foreach (var role in user.Roles){
+                Console.WriteLine(role.Name);
+            }
         }
     }
 
@@ -171,5 +174,6 @@ class Program{
 
         Console.WriteLine("Tag deleted");
     }
+
 }
 }
