@@ -34,8 +34,8 @@ class Program{
 
     public static void ReadUsers(SqlConnection connection){
        
-        var repository = new Repository<User>(connection);
-        var users = repository.Get();
+        var repository = new UserRepository(connection);
+        var users = repository.GetRoles();
 
         foreach (var user in users)
         {
