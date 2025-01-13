@@ -1,6 +1,7 @@
 ﻿using System;
 using Blog.Models;
 using Blog.Repositories;
+using Blog.Screens.TagScreens;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
 
@@ -15,165 +16,51 @@ class Program{
         var connection = new SqlConnection(CONNECTION_STRING);
         connection.Open();
 
-        ReadUsers(connection);
-        //ReadRoles(connection);
-        //ReadTags(connection);
-        //CreateUsers(connection);
-        //CreateRoles(connection);
-        //CreateTags(connection);
-        //UpdateUser(connection);
-        //UpdateRole(connection);
-        //UpdateTag(connection);
-        //DeleteUsers(connection);
-        //DeleteRoles(connection);
-        //DeleteTags(connection);
+        Load();
 
+        Console.ReadKey();
         connection.Close();
 
     }
 
-    public static void ReadUsers(SqlConnection connection){
-       
-        var repository = new UserRepository(connection);
-        var users = repository.GetRoles();
+    public static void Load(){
 
-        foreach (var user in users)
-        {
-            Console.WriteLine(user.Name);
-            foreach (var role in user.Roles){
-                Console.WriteLine(role.Name);
-            }
+        Console.Clear();
+        Console.WriteLine("Welcome to Blog");
+        Console.WriteLine("---------------");
+        Console.WriteLine("Let's to work");
+        Console.WriteLine();
+        Console.WriteLine("1 - User Management");
+        Console.WriteLine("2 - Role Management");
+        Console.WriteLine("3 - Category Management");
+        Console.WriteLine("4 - Tag Management");
+        Console.WriteLine("5 - Vinculate User/Role");
+        Console.WriteLine("6 - Vinculate Post/Tag");
+        Console.WriteLine("7 - Reports");
+        Console.WriteLine();
+        Console.WriteLine();
+
+        var option = short.Parse(Console.ReadLine());
+
+        switch(option){
+            case 1:
+
+            case 2:
+
+            case 3:
+
+            case 4: MenuTagScreen.Load(); 
+            break;
+
+            case 5:
+
+            case 6:
+
+            case 7:
+
+            default: Load();
+            break;
         }
     }
-
-    public static void ReadRoles(SqlConnection connection){
-        var repository = new Repository<Role>(connection);
-        var roles = repository.Get();
-
-        foreach (var role in roles)
-        {
-            Console.WriteLine(role.Name);
-        }
-    }
-
-    public static void ReadTags(SqlConnection connection){
-        var repository = new Repository<Tag>(connection);
-        var tags = repository.Get();
-
-        foreach (var tag in tags)
-        {
-            Console.WriteLine(tag.Name);
-        }
-    }
-
-    public static void CreateUsers(SqlConnection connection){
-
-        var user = new User();
-        user.Name = "Joao Paschoal";
-        user.Email = "joao@balta.io";
-        user.PasswordHash = "HASH";
-        user.Bio = "Equipe balta.io";
-        user.Image = "https://";
-        user.Slug = "joao-paschoal";
-
-
-        var repository = new Repository<User>(connection);
-        repository.Create(user);
-        Console.WriteLine("User created");
-    }
-
-    public static void CreateRoles(SqlConnection connection){
-
-        var role = new Role();
-        role.Name = "Role test";
-        role.Slug = "role-test";
-
-        var repository = new Repository<Role>(connection);
-        repository.Create(role);
-        Console.WriteLine("Role created");
-    }
-
-    public static void CreateTags(SqlConnection connection){
-
-        var tag = new Tag();
-        tag.Name = "Tag test";
-        tag.Slug = "tag-test";
-
-
-        var repository = new Repository<Tag>(connection);
-        repository.Create(tag);
-        Console.WriteLine("Tag created");
-    }
-
-    public static void UpdateUser(SqlConnection connection){
-        var user = new User();
-        user.Id = 3;
-        user.Name = "Felipe Toscano";
-        user.Email = "felipe_toscano@balta.io";
-        user.PasswordHash = "felipe-toscano";
-        user.Bio = "Test";
-        user.Image = "https://";
-        user.Slug = "felipe-toscano";
-        
-        var repository = new Repository<User>(connection);
-        repository.Update(user);
-
-        Console.WriteLine("User updated");
-    }
-
-    public static void UpdateRole(SqlConnection connection){
-        var role = new Role();
-        role.Id = 2;
-        role.Name = "test";
-        role.Slug = "test-test";
-        
-        var repository = new Repository<Role>(connection);
-        repository.Update(role);
-
-        Console.WriteLine("Role updated");
-    }
-
-    public static void UpdateTag(SqlConnection connection){
-        var tag = new Tag();
-        tag.Id = 3;
-        tag.Name = "Felipe Toscano";
-        tag.Slug = "felipe-toscano";
-        
-        var repository = new Repository<Tag>(connection);
-        repository.Update(tag);
-
-        Console.WriteLine("Tag updated");
-    }
-
-    public static void DeleteUsers(SqlConnection connection){
-
-        var repository = new Repository<User>(connection);
-
-        var user = connection.Get<User>(3);
-        repository.Delete(user);
-
-        Console.WriteLine("User deleted");
-    }
-
-    public static void DeleteRoles(SqlConnection connection){
-
-        var repository = new Repository<Role>(connection);
-
-        var role = connection.Get<Role>(2);
-        repository.Delete(role);
-
-        Console.WriteLine("Role deleted");
-    }
-
-    public static void DeleteTags(SqlConnection connection){
-
-        var repository = new Repository<Tag>(connection);
-
-        var tag = connection.Get<Tag>(3);
-        repository.Delete(tag);
-
-        Console.WriteLine("Tag deleted");
-    }
-
 }
 }
