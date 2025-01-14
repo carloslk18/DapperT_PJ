@@ -13,13 +13,13 @@ class Program{
 
     public static void Main(string[] args){
 
-        var connection = new SqlConnection(CONNECTION_STRING);
-        connection.Open();
+        Database.DbConnection = new SqlConnection(CONNECTION_STRING);
+        Database.DbConnection.Open();
 
         Load();
 
         Console.ReadKey();
-        connection.Close();
+        Database.DbConnection.Close();
 
     }
 

@@ -8,7 +8,7 @@ public static class MenuTagScreen{
         Console.Clear();
         Console.WriteLine("Tags Management");
         Console.WriteLine("---------------");
-        Console.WriteLine("What do you do?");
+        Console.WriteLine("What do you want?");
         Console.WriteLine();
         Console.WriteLine("1 - Read Tags");
         Console.WriteLine("2 - Create Tags");
